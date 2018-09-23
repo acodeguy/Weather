@@ -47,8 +47,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, UIText
         
     }
     
-    
-    
     // locationManager stuff
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

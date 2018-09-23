@@ -17,7 +17,7 @@
 #### Installation steps
 1. Clone the repo: `git clone https://github.com/acodeguy/weather`
 2. Run `pod update` (in project root)
-3. Add a Constants.swift file to the root folder of your project
+3. Add a Constants.swift file in the root folder of your project (same folder with Info.plist, Assets.xcassets, etc)
 4. Add the OMW API key and URL
 
 ##### Adding Constants.swft file and its content:
