@@ -16,6 +16,7 @@
 		58163ABD214C525D00EB03B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58163ABB214C525D00EB03B9 /* LaunchScreen.storyboard */; };
 		58310F31214E3DCA00207C80 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 58310F30214E3DCA00207C80 /* README.md */; };
 		58313C4A214CE71C00CBA81A /* WeatherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58313C49214CE71C00CBA81A /* WeatherDataModel.swift */; };
+		58396D1121595C8700160329 /* LocationSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58396D1021595C8700160329 /* LocationSearchController.swift */; };
 		DD75955F4A88ECAFC095CF88 /* Pods_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077D10E19D6CE1DD55A9886F /* Pods_Weather.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		58163ABE214C525D00EB03B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58310F30214E3DCA00207C80 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		58313C49214CE71C00CBA81A /* WeatherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataModel.swift; sourceTree = "<group>"; };
+		58396D1021595C8700160329 /* LocationSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchController.swift; sourceTree = "<group>"; };
 		D4D265E23199F148FA6D7DED /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Pods/Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				58163AB4214C525D00EB03B9 /* WeatherViewController.swift */,
+				58396D1021595C8700160329 /* LocationSearchController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58163AB5214C525D00EB03B9 /* WeatherViewController.swift in Sources */,
+				58396D1121595C8700160329 /* LocationSearchController.swift in Sources */,
 				58163AB3214C525D00EB03B9 /* AppDelegate.swift in Sources */,
 				58313C4A214CE71C00CBA81A /* WeatherDataModel.swift in Sources */,
 				5804A5B221528E670002EF0A /* Constants.swift in Sources */,

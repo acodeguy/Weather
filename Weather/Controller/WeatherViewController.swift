@@ -13,20 +13,19 @@ import SwiftyJSON
 import SVProgressHUD
 import Toast_Swift
 
-class WeatherViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
+class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
     // outlets
-    @IBOutlet weak var getWeatherButton: UIButton!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var countryLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var locationSearchTextField: UITextField!
     @IBOutlet weak var weatherIcon: UILabel!
     @IBOutlet weak var conditionLabel: UILabel!
     @IBOutlet weak var sunriseLabel: UILabel!
     @IBOutlet weak var sunsetLabel: UILabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var mainContainerView: UIView!
+    @IBOutlet weak var locationSearchBar: UISearchBar!
     
     //
     let locationManager = CLLocationManager()
@@ -37,8 +36,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, UIText
         
         setupUITweaks()
         
-        locationSearchTextField.delegate = self
-        
+        // location manager
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
@@ -165,7 +163,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, UIText
 
     @IBAction func getWeatherPressed(_ sender: UIButton) {
         
-        let newLocation = locationSearchTextField.text!
+        let newLocation = "Hitchin"
         
         let params: [String:String] = [
             
@@ -173,7 +171,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, UIText
             "appid": APP_ID
         ]
         
-        locationSearchTextField.text = ""
+//        locationSearchTextField.text = ""
         
         getWeatherDataFromServer(url: WEATHER_URL, parameters: params)
     }
@@ -193,7 +191,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, UIText
         
         view.endEditing(true)
         
-        getWeatherPressed(getWeatherButton)
+//        getWeatherPressed(getWeatherButton)
         
         return false
     }
@@ -210,5 +208,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, UIText
         
     }
     
+    @IBAction func searchLocationPressed(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "showLocationSearch", sender: self)
+    }
 }
 
