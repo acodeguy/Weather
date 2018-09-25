@@ -40,7 +40,7 @@
                                         <state key="normal" title="🔍"/>
                                         <connections>
                                             <action selector="searchLocationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KWz-J2-sCW"/>
-                                            <segue destination="D0K-hr-0SC" kind="show" identifier="showLocationSearch" id="VX8-Yl-viS"/>
+                                            <segue destination="6GN-6l-YFP" kind="show" identifier="showLocationSearch" id="GBY-eh-2l9"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -158,7 +158,7 @@
             </objects>
             <point key="canvasLocation" x="2.8985507246376816" y="129.61956521739131"/>
         </scene>
-        <!--Location Results-->
+        <!--Location Search-->
         <scene sceneID="aex-Yu-Z3u">
             <objects>
                 <tableViewController id="D0K-hr-0SC" customClass="LocationSearchController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
@@ -166,7 +166,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="town, location, post code" id="DfG-h1-6fk">
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="town, location, post code" id="DfG-h1-6fk">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
@@ -186,7 +186,7 @@
                             <outlet property="delegate" destination="D0K-hr-0SC" id="3Gj-WW-iJ8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Location Results" id="Gfb-oS-SmL"/>
+                    <navigationItem key="navigationItem" title="Location Search" id="Gfb-oS-SmL"/>
                     <connections>
                         <outlet property="locationSearchBar" destination="DfG-h1-6fk" id="aLg-Hd-KpD"/>
                     </connections>
@@ -217,7 +217,4 @@
     <resources>
         <image name="nebula" width="3648" height="5472"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="VX8-Yl-viS"/>
-    </inferredMetricsTieBreakers>
 </document>

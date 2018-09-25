@@ -217,8 +217,10 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
         
         if segue.identifier == "showLocationSearch" {
             
-            let destinationVC = segue.destination as! LocationSearchController
-            destinationVC.delegate = self
+            let destinationNavigationController = segue.destination as! UINavigationController
+            let targetViewController = destinationNavigationController.topViewController as! LocationSearchController
+            targetViewController.delegate = self
+            
         }
     }
     
