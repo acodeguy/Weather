@@ -13,7 +13,7 @@ import SwiftyJSON
 import SVProgressHUD
 import Toast_Swift
 
-class WeatherViewController: UIViewController, CLLocationManagerDelegate {
+class WeatherViewController: UIViewController, CLLocationManagerDelegate, ChangeLocationDelegate {
 
     // outlets
     @IBOutlet weak var cityLabel: UILabel!
@@ -211,6 +211,30 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func searchLocationPressed(_ sender: UIButton) {
         
         performSegue(withIdentifier: "showLocationSearch", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showLocationSearch" {
+            
+            let destinationVC = segue.destination as! LocationSearchController
+            destinationVC.delegate = self
+        }
+    }
+    
+    // MARK: ChangeLocationDelegate
+    
+    func newLocationEntered(lat: String, lon: String) {
+        
+        let params: [String: String] = [
+            "lat" : lat,
+            "lon" : lon,
+            "appid" : APP_ID
+        ]
+        
+        print("RECIEVED DATA: \(lat), \(lon)")
+        
+        getWeatherDataFromServer(url: WEATHER_URL, parameters: params)
     }
 }
 

@@ -12,8 +12,12 @@ import Toast_Swift
 
 class LocationSearchController: UITableViewController, UISearchBarDelegate, MKLocalSearchCompleterDelegate {
     
+    // variables
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
+    var delegate: ChangeLocationDelegate?
+    
+    // outlets
     @IBOutlet weak var locationSearchBar: UISearchBar!
     
     override func viewDidLoad() {
@@ -62,10 +66,12 @@ class LocationSearchController: UITableViewController, UISearchBarDelegate, MKLo
                 
                 for location in response.mapItems {
                     
-                    let lat = location.placemark.coordinate.latitude
-                    let lon = location.placemark.coordinate.longitude
+                    let lat = String(location.placemark.coordinate.latitude)
+                    let lon = String(location.placemark.coordinate.longitude)
                     
-                    print("lat: \(lat), long: \(lon)")
+                    self.delegate?.newLocationEntered(lat: lat, lon: lon)
+                    
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
         }
