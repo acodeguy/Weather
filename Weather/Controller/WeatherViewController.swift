@@ -160,21 +160,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
         
         return dateFormatter.string(from: sunTime)
     }
-
-    @IBAction func getWeatherPressed(_ sender: UIButton) {
-        
-        let newLocation = "Hitchin"
-        
-        let params: [String:String] = [
-            
-            "q": newLocation,
-            "appid": APP_ID
-        ]
-        
-//        locationSearchTextField.text = ""
-        
-        getWeatherDataFromServer(url: WEATHER_URL, parameters: params)
-    }
     
     @IBAction func getCurrentWeatherPressed(_ sender: Any) {
         

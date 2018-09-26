@@ -11,7 +11,7 @@
 
 #### Requirements
 - Xcode 10+ with an iOS 12+ simulator
-- Cocoapods 1.5.3+
+- Cocoapods 1.5.3+ (AlamoFire, SwifyJSON, SVProgressHUD, Toast-Swift)
 - An OpenWeatherMap API key
 
 #### Installation steps

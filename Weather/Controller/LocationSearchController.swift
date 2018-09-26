@@ -25,6 +25,8 @@ class LocationSearchController: UITableViewController, UISearchBarDelegate, MKLo
         super.viewDidLoad()
         
         searchCompleter.delegate = self
+        searchCompleter.filterType = .locationsOnly
+        
         locationSearchBar.delegate = self
        
     }
@@ -34,6 +36,7 @@ class LocationSearchController: UITableViewController, UISearchBarDelegate, MKLo
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         searchCompleter.queryFragment = searchText
+        
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
@@ -49,7 +52,7 @@ class LocationSearchController: UITableViewController, UISearchBarDelegate, MKLo
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = searchResults[indexPath.row].title
+        request.naturalLanguageQuery = " \(searchResults[indexPath.row].title), \(searchResults[indexPath.row].subtitle)"
         
         let search = MKLocalSearch(request: request)
         search.start { (response, error) in
@@ -69,6 +72,8 @@ class LocationSearchController: UITableViewController, UISearchBarDelegate, MKLo
                     let lat = String(location.placemark.coordinate.latitude)
                     let lon = String(location.placemark.coordinate.longitude)
                     
+                    print("sent over: lat: \(lat), lon: \(lon)")
+                    
                     self.delegate?.newLocationEntered(lat: lat, lon: lon)
                     
                     self.dismiss(animated: true, completion: nil)
@@ -82,7 +87,7 @@ class LocationSearchController: UITableViewController, UISearchBarDelegate, MKLo
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationResultCell", for: indexPath)
         
-        cell.textLabel?.text = searchResults[indexPath.row].title
+        cell.textLabel?.text = "\(searchResults[indexPath.row].title), \(searchResults[indexPath.row].subtitle)"
         
         return cell
     }
@@ -102,7 +107,27 @@ class LocationSearchController: UITableViewController, UISearchBarDelegate, MKLo
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         
         searchResults = completer.results
+        searchResults = cleanSearchResults()
         tableView.reloadData()
     }
     
+    // MARK: misc methods
+    func cleanSearchResults() -> [MKLocalSearchCompletion] {
+        
+        let digitsCharacterSet = NSCharacterSet.decimalDigits
+        
+        let filteredResults = searchCompleter.results.filter { result in
+            if result.title.rangeOfCharacter(from: digitsCharacterSet) != nil {
+                return false
+            }
+            
+            if result.subtitle.rangeOfCharacter(from: digitsCharacterSet) != nil {
+                return false
+            }
+            
+            return true
+        }
+        
+        return filteredResults
+    }
 }
