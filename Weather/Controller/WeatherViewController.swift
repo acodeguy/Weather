@@ -16,16 +16,11 @@ import Toast_Swift
 class WeatherViewController: UIViewController, CLLocationManagerDelegate, ChangeLocationDelegate {
 
     // outlets
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherIcon: UILabel!
-    @IBOutlet weak var conditionLabel: UILabel!
-    @IBOutlet weak var sunriseLabel: UILabel!
-    @IBOutlet weak var sunsetLabel: UILabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var mainContainerView: UIView!
-    @IBOutlet weak var locationSearchBar: UISearchBar!
     
     //
     let locationManager = CLLocationManager()
@@ -78,7 +73,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
         self.view.makeToast("There was an error getting your location.")
-        cityLabel.text = "Weather Unavailable"
+        locationLabel.text = "Weather Unavailable"
     }
     
     //
@@ -104,7 +99,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
                 SVProgressHUD.dismiss()
                 
                 self.view.makeToast("There was an error getting the weather data from the server.")
-                self.cityLabel.text = "Connection Error"
+                self.locationLabel.text = "Connection Error"
             }
         }
         
@@ -116,36 +111,26 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
             
             // convert temperature from Kevlin to Celsius
             weatherDataModel.temperature = Int(temperatureResult - 273.15)
-            weatherDataModel.city = weatherDataJSON["name"].stringValue
-            weatherDataModel.country = weatherDataJSON["sys"]["country"].stringValue
+            weatherDataModel.location = "\(weatherDataJSON["name"].stringValue), \(weatherDataJSON["sys"]["country"].stringValue)"
             weatherDataModel.weatherIcon = String(weatherDataModel.updateWeatherIcon(condition: weatherDataJSON["weather"][0]["id"].intValue))
             
-            weatherDataModel.sunrise = weatherDataJSON["sys"]["sunrise"].intValue
-            weatherDataModel.sunset = weatherDataJSON["sys"]["sunset"].intValue
-            
             weatherDataModel.backgroundImage = String(weatherDataModel.updateBackgroundImage(condition: weatherDataJSON["weather"][0]["id"].intValue))
-            
-            weatherDataModel.conditionDescription = weatherDataJSON["weather"][0]["description"].stringValue
                 
             updateUI()
             
         } else {
             
             self.view.makeToast("Error getting weather data; typo in location name?")
-            cityLabel.text = "Weather Unavailable"
+            locationLabel.text = "Weather Unavailable"
             
         }
     }
     
     func updateUI() {
         
-        cityLabel.text = weatherDataModel.city
-        countryLabel.text = weatherDataModel.country
+        locationLabel.text = weatherDataModel.location
         temperatureLabel.text = String(weatherDataModel.temperature) + "℃"
         weatherIcon.text = weatherDataModel.weatherIcon
-        conditionLabel.text = weatherDataModel.conditionDescription
-        sunriseLabel.text = "SUNRISE: " + convertUNIXTimeToHumanTime(UNIXTime: Int(weatherDataModel.sunrise))
-        sunsetLabel.text = "SUNSET: " + convertUNIXTimeToHumanTime(UNIXTime: Int(weatherDataModel.sunset))
         
         updateBackgroundImage()
     
