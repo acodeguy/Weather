@@ -21,6 +21,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     @IBOutlet weak var weatherIcon: UILabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var mainContainerView: UIView!
+    @IBOutlet weak var conditionsLabel: UILabel!
     
     //
     let locationManager = CLLocationManager()
@@ -114,6 +115,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
             weatherDataModel.location = "\(weatherDataJSON["name"].stringValue), \(weatherDataJSON["sys"]["country"].stringValue)"
             weatherDataModel.weatherIcon = String(weatherDataModel.updateWeatherIcon(condition: weatherDataJSON["weather"][0]["id"].intValue))
             
+            weatherDataModel.conditions = String(weatherDataJSON["weather"][0]["main"].stringValue)
+            
             weatherDataModel.backgroundImage = String(weatherDataModel.updateBackgroundImage(condition: weatherDataJSON["weather"][0]["id"].intValue))
                 
             updateUI()
@@ -131,6 +134,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
         locationLabel.text = weatherDataModel.location
         temperatureLabel.text = String(weatherDataModel.temperature) + "℃"
         weatherIcon.text = weatherDataModel.weatherIcon
+        conditionsLabel.text = weatherDataModel.conditions
         
         updateBackgroundImage()
     
