@@ -72,8 +72,6 @@ class LocationSearchController: UITableViewController, UISearchBarDelegate, MKLo
                     let lat = String(location.placemark.coordinate.latitude)
                     let lon = String(location.placemark.coordinate.longitude)
                     
-                    print("sent over: lat: \(lat), lon: \(lon)")
-                    
                     self.delegate?.newLocationEntered(lat: lat, lon: lon)
                     
                     self.dismiss(animated: true, completion: nil)

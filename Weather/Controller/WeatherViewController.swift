@@ -45,8 +45,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        print("locations found")
-        
         let location = locations[locations.count - 1]
         
         if location.horizontalAccuracy > 0 {
@@ -92,7 +90,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
                 SVProgressHUD.dismiss()
                 
                 let weatherDataJSON: JSON = JSON(response.result.value!)
-                print(weatherDataJSON)
                 self.updateWeatherDataModel(weatherDataJSON: weatherDataJSON)
                 
             } else {
@@ -207,8 +204,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
             "lon" : lon,
             "appid" : APP_ID
         ]
-        
-        print("RECIEVED DATA: \(lat), \(lon)")
         
         getWeatherDataFromServer(url: WEATHER_URL, parameters: params)
     }
