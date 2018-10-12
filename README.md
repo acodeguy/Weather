@@ -1,7 +1,7 @@
 # Weather
 ## A simple weather app for iOS 12 iPhone that accesses live weather data from OpenWeatherMap's free API
 
-![Weather](https://acodeguy.com/img/portfolio/ios-weather.jpg)
+![Weather](https://acodeguy.com/img/portfolio/ios-weather.png)
 
 ### Features
 - Current weather conditions for current location
