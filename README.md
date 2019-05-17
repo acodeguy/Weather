@@ -1,7 +1,9 @@
 # Weather
 ## A simple weather app for iOS 12 iPhone that accesses live weather data from OpenWeatherMap's free API
 
-![Weather](https://acodeguy.com/img/portfolio/ios-weather.png)
+![Privacy promot to allow location settings](./screenshots/weather-1.png)
+![Search for the weather in any location on earth](./screenshots/weather-2.png)
+![See the weathher in any location on earth](./screenshots/weather-3.png)
 
 ### Features
 - Current weather conditions for current location
@@ -24,7 +26,7 @@
 
 Right-click the yellow Weather folder in your project navigator, New File. Select Swift file. Paste in the below code with your own OpenWeatherMap API key:
 
-```
+```swift
 import Foundation
 
 let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
